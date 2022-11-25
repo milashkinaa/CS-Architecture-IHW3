@@ -7,6 +7,7 @@
 extern void validation(double n);
 
 void writing() {
+    srand(time(NULL));
     FILE *file;
     file = fopen("input.txt", "w");
     double a = rand();
