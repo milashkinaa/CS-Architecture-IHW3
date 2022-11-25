@@ -1,5 +1,5 @@
-	.file	"writing.c"
-	.intel_syntax noprefix
+	.file	"writing.c"                          # writing.c
+	.intel_syntax noprefix                       # используем синтаксис интел
 	.text
 	.section	.rodata
 .LC0:
@@ -15,45 +15,45 @@
 	.text
 	.globl	writing
 	.type	writing, @function
-writing:
+writing:                                             # void writing() {
 	endbr64
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 16
-	lea	rax, .LC0[rip]
+	lea	rax, .LC0[rip]                       # file = fopen("input.txt", "w");
 	mov	rsi, rax
 	lea	rax, .LC1[rip]
 	mov	rdi, rax
-	call	fopen@PLT
-	mov	QWORD PTR -8[rbp], rax
-	call	rand@PLT
+	call	fopen@PLT                            # fopen();
+	mov	QWORD PTR -8[rbp], rax               # double a = rand();
+	call	rand@PLT                             # rand();
 	pxor	xmm0, xmm0
 	cvtsi2sd	xmm0, eax
 	movsd	QWORD PTR -16[rbp], xmm0
-	mov	rdx, QWORD PTR -16[rbp]
+	mov	rdx, QWORD PTR -16[rbp]              # fprintf(file,"%lf", a);
 	mov	rax, QWORD PTR -8[rbp]
 	movq	xmm0, rdx
 	lea	rdx, .LC2[rip]
 	mov	rsi, rdx
 	mov	rdi, rax
 	mov	eax, 1
-	call	fprintf@PLT
-	mov	rax, QWORD PTR -8[rbp]
-	mov	rdi, rax
-	call	fclose@PLT
-	lea	rax, .LC3[rip]
-	mov	rdi, rax
-	call	puts@PLT
-	mov	rax, QWORD PTR -16[rbp]
+	call	fprintf@PLT                          # fprintf();
+	mov	rax, QWORD PTR -8[rbp]               # fclose(file);
+	mov	rdi, rax 
+	call	fclose@PLT                           # fclose();
+	lea	rax, .LC3[rip]                       # printf("%s\n", "Generated number is...");
+	mov	rdi, rax             
+	call	puts@PLT                             # puts();                
+	mov	rax, QWORD PTR -16[rbp]              # printf("%lf\n", a);
 	movq	xmm0, rax
 	lea	rax, .LC4[rip]
 	mov	rdi, rax
 	mov	eax, 1
-	call	printf@PLT
-	mov	rax, QWORD PTR -16[rbp]
+	call	printf@PLT                           # printf();
+	mov	rax, QWORD PTR -16[rbp]              # validation(a);
 	movq	xmm0, rax
-	call	validation@PLT
+	call	validation@PLT                       # validation();
 	nop
 	leave
-	ret
+	ret                                          # return();
 	.size	writing, .-writing
