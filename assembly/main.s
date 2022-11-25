@@ -30,13 +30,13 @@ main:                                                                           
 	jne	.L2                                                                    # .L2
 	lea	rax, .LC0[rip]                                                         # printf("%s\n", "If you want to scan a value from a file, press 1");
 	mov	rdi, rax
-	call	puts@PLT										     # puts();
+	call	puts@PLT						               # puts();
 	lea	rax, .LC1[rip]                                                         # printf("%s\n", "If you want to work with a random number, press 2");
 	mov	rdi, rax
-	call	puts@PLT										     # puts();
+	call	puts@PLT							       # puts();
 	lea	rax, .LC2[rip]                                                         # printf("%s\n", "If you want to enter a value from the console, press 3");
 	mov	rdi, rax
-	call	puts@PLT										     # puts();
+	call	puts@PLT							       # puts();
 	lea	rax, -4[rbp]                                                           # scanf("%d", &a);
 	mov	rsi, rax
 	lea	rax, .LC3[rip]
