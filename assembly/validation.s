@@ -3,7 +3,7 @@
 	.text
 	.section	.rodata
 .LC1:
-	.string	"Incorrect data. Try again."
+	.string	"Incorrect data. Try again." 
 	.align 8
 .LC2:
 	.string	"Correct data. Your answer is..."
