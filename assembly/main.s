@@ -51,7 +51,7 @@ main:                                                                           
 	jmp	.L7                                                                    # .L7
 .L3:
 	mov	eax, DWORD PTR -4[rbp]                                                 # } else if (a == 2) {
-	cmp	eax, 2
+	cmp	eax, 2 
 	jne	.L5							               # .L5
 	mov	eax, 0
 	call	writing@PLT                                                            # writing();
