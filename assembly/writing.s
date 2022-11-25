@@ -17,9 +17,13 @@
 	.type	writing, @function
 writing:                                             # void writing() {
 	endbr64
-	push	rbp
+	push	rbp                                  # srand(time(NULL));
 	mov	rbp, rsp
 	sub	rsp, 16
+	mov	edi, 0
+	call	time@PLT                             # time()
+	mov	edi, eax
+	call	srand@PLT                            # srand()
 	lea	rax, .LC0[rip]                       # file = fopen("input.txt", "w");
 	mov	rsi, rax
 	lea	rax, .LC1[rip]
@@ -36,7 +40,7 @@ writing:                                             # void writing() {
 	lea	rdx, .LC2[rip]
 	mov	rsi, rdx
 	mov	rdi, rax
-	mov	eax, 1
+	mov	eax, 1 
 	call	fprintf@PLT                          # fprintf();
 	mov	rax, QWORD PTR -8[rbp]               # fclose(file);
 	mov	rdi, rax 
